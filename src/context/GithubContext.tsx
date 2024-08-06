@@ -38,23 +38,27 @@ export function GithubProvider({ children }: GithubProviderProps) {
   const [isUserLoading, setIsUserLoading] = useState(true)
   const [isIssuesLoading, setIsIssuesLoading] = useState(true)
   const [userIssues, setUserIssues] = useState('')
+  const [search, setSearch] = useState('')
+  const username = 'thealdoamati'
 
   async function getUserData() {
-    const username = 'thealdoamati'
     const response = await api.get(`/users/${username}`)
     const userData = response.data
     setUser(userData)
     setIsUserLoading(false)
   }
 
-
   async function fetchUserIssues(query?: string) {
+    if (query) {
+      setSearch(query)
+    }
     const response = await api.get(`/search/issues/`, {
       params: {
+        author: username,
+        q: search,
         repository_id: '838584853',
         sort: 'created',
         order: 'desc',
-        q: query,
       },
     })
     const userIssues = response.data
@@ -64,7 +68,7 @@ export function GithubProvider({ children }: GithubProviderProps) {
 
   useEffect(() => {
     getUserData()
-    fetchUserIssues()
+    fetchUserIssues('teste')
   }, [])
 
   return (
