@@ -14,6 +14,9 @@ export interface User {
 interface GithubContextType {
   user: User
   isUserLoading: boolean
+  fetchUserIssues: (query: string) => void
+  isIssuesLoading: boolean
+  userIssues: string
 }
 
 export const GithubContext = createContext({} as GithubContextType)
@@ -33,20 +36,47 @@ export function GithubProvider({ children }: GithubProviderProps) {
     html_url: 'https://github.com/',
   })
   const [isUserLoading, setIsUserLoading] = useState(true)
+  const [isIssuesLoading, setIsIssuesLoading] = useState(true)
+  const [userIssues, setUserIssues] = useState('')
 
   async function getUserData() {
     const username = 'thealdoamati'
     const response = await api.get(`/users/${username}`)
     const userData = response.data
-    // setUser(userData)
+    setUser(userData)
     setIsUserLoading(false)
   }
+
+
+  async function fetchUserIssues(query?: string) {
+    const response = await api.get(`/search/issues/`, {
+      params: {
+        repository_id: '838584853',
+        sort: 'created',
+        order: 'desc',
+        q: query,
+      },
+    })
+    const userIssues = response.data
+    setUserIssues(userIssues)
+    setIsIssuesLoading(false)
+  }
+
   useEffect(() => {
     getUserData()
+    fetchUserIssues()
   }, [])
 
   return (
-    <GithubContext.Provider value={{ user, isUserLoading }}>
+    <GithubContext.Provider
+      value={{
+        user,
+        isUserLoading,
+        fetchUserIssues,
+        isIssuesLoading,
+        userIssues,
+      }}
+    >
       {children}
     </GithubContext.Provider>
   )
