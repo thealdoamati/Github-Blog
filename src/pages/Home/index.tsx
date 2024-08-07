@@ -1,9 +1,10 @@
 import { useContext } from 'react'
 import { GithubContext } from '../../context/GithubContext'
 import { HomeDiv, ProfileCard } from './styles'
+import { SearchForm } from '../../components/SearchForm'
 
 export function Home() {
-  const { user } = useContext(GithubContext)
+  const { user, userIssues } = useContext(GithubContext)
 
   return (
     <HomeDiv>
@@ -41,8 +42,9 @@ export function Home() {
       </ProfileCard>
       <div>
         <h3>Publicações</h3>
-        <p>6 publicações</p>
+        <p>{userIssues.length} publicações</p>
       </div>
+      <SearchForm />
     </HomeDiv>
   )
 }

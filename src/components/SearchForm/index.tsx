@@ -1,0 +1,34 @@
+import { useContext, useEffect, useState } from 'react'
+import * as z from 'zod'
+import { GithubContext } from '../../context/GithubContext'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const searchFormSchema = z.object({
+  query: z.string(),
+})
+
+type SearchFormInputs = z.infer<typeof searchFormSchema>
+
+export function SearchForm() {
+  const { fetchUserIssues } = useContext(GithubContext)
+
+  const { register, handleSubmit } = useForm<SearchFormInputs>({
+    resolver: zodResolver(searchFormSchema),
+    mode: 'onChange',
+  })
+
+  async function searchTransactions(data: SearchFormInputs) {
+    fetchUserIssues(data.query)
+  }
+
+  useEffect(() => {
+    fetchUserIssues('')
+  }, [])
+
+  return (
+    <form onSubmit={handleSubmit(searchTransactions)}>
+      <input type="text" placeholder="Buscar" {...register('query')} />
+    </form>
+  )
+}
