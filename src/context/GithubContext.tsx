@@ -40,6 +40,7 @@ export function GithubProvider({ children }: GithubProviderProps) {
   const [userIssues, setUserIssues] = useState('')
   const [search, setSearch] = useState('')
   const username = 'thealdoamati'
+  const repo = 'Github-Blog'
 
   async function getUserData() {
     const response = await api.get(`/users/${username}`)
@@ -49,26 +50,22 @@ export function GithubProvider({ children }: GithubProviderProps) {
   }
 
   async function fetchUserIssues(query?: string) {
-    if (query) {
-      setSearch(query)
-    }
-    const response = await api.get(`/search/issues/`, {
+    const searchQuery = query || search
+    const response = await api.get(`/search/issues`, {
       params: {
-        author: username,
-        q: search,
-        repository_id: '838584853',
+        q: `${searchQuery} repo:${username}/${repo}`,
         sort: 'created',
         order: 'desc',
       },
     })
-    const userIssues = response.data
+    const userIssues = response.data.items
     setUserIssues(userIssues)
     setIsIssuesLoading(false)
   }
 
   useEffect(() => {
     getUserData()
-    fetchUserIssues('teste')
+    fetchUserIssues('')
   }, [])
 
   return (
