@@ -7,11 +7,7 @@ interface IssueCardProps {
 
 export function IssueCard({ issue }: IssueCardProps) {
   return (
-    <IssueCardWrapper
-      href={issue.html_url}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <IssueCardWrapper href={`/article/${issue.id}`}>
       <IssueCardHeader>
         <h1>{issue.title}</h1>
         <p>{issue.created_at}</p>

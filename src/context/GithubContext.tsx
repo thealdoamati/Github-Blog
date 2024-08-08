@@ -28,7 +28,7 @@ export interface Issue {
 interface GithubContextType {
   user: User
   isUserLoading: boolean
-  fetchUserIssues: (query: string) => void
+  fetchUserIssues: (query: string | undefined) => void
   isIssuesLoading: boolean
   userIssues: Issue[]
 }
@@ -73,7 +73,6 @@ export function GithubProvider({ children }: GithubProviderProps) {
     })
     const responseUserIssues = response.data.items
     setUserIssues(responseUserIssues)
-    console.log(responseUserIssues)
     setIsIssuesLoading(false)
   }
 
