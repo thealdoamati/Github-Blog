@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { GithubContext } from '../../context/GithubContext'
 import { HomeDiv, ProfileCard } from './styles'
 import { SearchForm } from '../../components/SearchForm'
+import { IssueCard } from '../../components/IssueCard'
 
 export function Home() {
   const { user, userIssues } = useContext(GithubContext)
@@ -44,7 +45,11 @@ export function Home() {
         <h3>Publicações</h3>
         <p>{userIssues.length} publicações</p>
       </div>
+
       <SearchForm />
+      {userIssues.map((userIssue) => {
+        return <IssueCard key={userIssue.id} issue={userIssue} />
+      })}
     </HomeDiv>
   )
 }

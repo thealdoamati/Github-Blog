@@ -11,12 +11,26 @@ export interface User {
   html_url: string
 }
 
+export interface UserIssue {
+  login: string
+}
+
+export interface Issue {
+  id: number
+  title: string
+  user: UserIssue
+  created_at: string
+  comments: number
+  html_url: string
+  body: string
+}
+
 interface GithubContextType {
   user: User
   isUserLoading: boolean
   fetchUserIssues: (query: string) => void
   isIssuesLoading: boolean
-  userIssues: string
+  userIssues: Issue[]
 }
 
 export const GithubContext = createContext({} as GithubContextType)
@@ -37,7 +51,7 @@ export function GithubProvider({ children }: GithubProviderProps) {
   })
   const [isUserLoading, setIsUserLoading] = useState(true)
   const [isIssuesLoading, setIsIssuesLoading] = useState(true)
-  const [userIssues, setUserIssues] = useState('')
+  const [userIssues, setUserIssues] = useState<Issue[]>([])
   const username = 'thealdoamati'
   const repo = 'Github-Blog'
 
