@@ -9,6 +9,17 @@ export const HomeDiv = styled.div`
   margin: 0 auto;
 `
 
+export const ProfileTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const ProfileContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
 export const ProfileCard = styled.div`
   width: 100%;
   display: flex;
@@ -17,7 +28,6 @@ export const ProfileCard = styled.div`
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 0 3rem;
 
   img {
     border-radius: 10px;

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { GithubContext } from '../../context/GithubContext'
-import { HomeDiv, ProfileCard } from './styles'
+import { HomeDiv, ProfileCard, ProfileContent, ProfileTitle } from './styles'
 import { SearchForm } from '../../components/SearchForm'
 import { IssueCard } from '../../components/IssueCard'
 
@@ -11,13 +11,13 @@ export function Home() {
     <HomeDiv>
       <ProfileCard>
         <img src={user.avatar_url} alt={`${user.name}'s avatar`} />
-        <div>
-          <div>
+        <ProfileContent>
+          <ProfileTitle>
             <h1>{user.name}</h1>
             <a href={user.html_url} target="_blank" rel="noopener noreferrer">
               GITHUB
             </a>
-          </div>
+          </ProfileTitle>
           <p>{user.bio}</p>
           <div>
             <p>
@@ -39,7 +39,7 @@ export function Home() {
               {user.followers} seguidores
             </p>
           </div>
-        </div>
+        </ProfileContent>
       </ProfileCard>
       <div>
         <h3>Publicações</h3>

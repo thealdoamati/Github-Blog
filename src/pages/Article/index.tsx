@@ -21,5 +21,22 @@ export function Article() {
   }, [fetchUserIssues, issueId, userIssues])
 
   console.log(article)
-  return <>{article?.title}</>
+  return (
+    <div>
+      <div>
+        <div>
+          <a href="/">VOLTAR</a>
+          <a href={article?.html_url}>VER NO GITHUB</a>
+        </div>
+
+        <h1>{article?.title}</h1>
+        <div>
+          <span>{article?.user.login}</span>
+          <span>{article?.created_at}</span>
+          <span>{article?.comments} comentários</span>
+        </div>
+      </div>
+      <p>{article?.body}</p>
+    </div>
+  )
 }
