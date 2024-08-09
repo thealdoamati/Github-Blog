@@ -7,6 +7,7 @@ export const HomeDiv = styled.div`
   width: 100%;
   max-width: 74rem;
   margin: -6rem auto;
+  padding: 0 1rem;
 `
 
 export const PublicationsDiv = styled.div`

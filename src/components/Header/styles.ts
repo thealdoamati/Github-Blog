@@ -7,7 +7,11 @@ export const HeaderStyle = styled.header`
   padding: 4rem 0rem 8rem;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.theme['base-profile']};
+  background: linear-gradient(
+    135deg,
+    ${(props) => props.theme['base-profile']} 0%,
+    ${(props) => props.theme['base-border']} 100%
+  );
   font-family: 'Coda', sans-serif;
   font-weight: 300;
   color: ${(props) => props.theme.blue};

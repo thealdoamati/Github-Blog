@@ -1,5 +1,16 @@
 import styled from 'styled-components'
 
+export const LoadingSpan = styled.span`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 74rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+`
+
 export const ArticleDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -7,6 +18,7 @@ export const ArticleDiv = styled.div`
   width: 100%;
   max-width: 74rem;
   margin: -6rem auto;
+  padding: 0 1rem;
 `
 
 export const ArticleHead = styled.div`
@@ -23,9 +35,11 @@ export const ArticleCard = styled.div`
   border-radius: 10px;
   padding: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 
   h1 {
     font-size: 1.5rem;
+    margin-top: 10px;
     color: ${(props) => props.theme['base-title']};
   }
 

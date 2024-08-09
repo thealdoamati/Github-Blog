@@ -11,12 +11,12 @@ export const IssueCardWrapper = styled.a`
   text-decoration: none;
 
   h1 {
-    font-size: 16px;
+    font-size: 1.2rem;
     margin-bottom: 8px;
   }
 
   p {
-    font-size: 14px;
+    font-size: 0.9rem;
   }
 
   &:hover {
