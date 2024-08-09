@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { GithubContext, Issue } from '../../context/GithubContext'
+import { ArticleCard, ArticleDiv, ArticleHead } from './styles'
 
 export function Article() {
   const [article, setArticle] = useState<Issue>()
@@ -22,12 +23,12 @@ export function Article() {
 
   console.log(article)
   return (
-    <div>
-      <div>
-        <div>
+    <ArticleDiv>
+      <ArticleCard>
+        <ArticleHead>
           <a href="/">VOLTAR</a>
           <a href={article?.html_url}>VER NO GITHUB</a>
-        </div>
+        </ArticleHead>
 
         <h1>{article?.title}</h1>
         <div>
@@ -35,8 +36,8 @@ export function Article() {
           <span>{article?.created_at}</span>
           <span>{article?.comments} comentários</span>
         </div>
-      </div>
+      </ArticleCard>
       <p>{article?.body}</p>
-    </div>
+    </ArticleDiv>
   )
 }

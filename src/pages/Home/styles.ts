@@ -6,7 +6,14 @@ export const HomeDiv = styled.div`
   justify-content: center;
   width: 100%;
   max-width: 74rem;
-  margin: 0 auto;
+  margin: -6rem auto;
+`
+
+export const PublicationsDiv = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 1rem;
 `
 
 export const ProfileTitle = styled.div`
@@ -26,7 +33,7 @@ export const ProfileCard = styled.div`
   align-items: center;
   background-color: ${(props) => props.theme['base-profile']};
   border-radius: 10px;
-  padding: 20px;
+  padding: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   img {

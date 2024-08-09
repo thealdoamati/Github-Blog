@@ -1,6 +1,12 @@
 import { useContext } from 'react'
 import { GithubContext } from '../../context/GithubContext'
-import { HomeDiv, ProfileCard, ProfileContent, ProfileTitle } from './styles'
+import {
+  HomeDiv,
+  ProfileCard,
+  ProfileContent,
+  ProfileTitle,
+  PublicationsDiv,
+} from './styles'
 import { SearchForm } from '../../components/SearchForm'
 import { IssueCard } from '../../components/IssueCard'
 
@@ -41,10 +47,10 @@ export function Home() {
           </div>
         </ProfileContent>
       </ProfileCard>
-      <div>
+      <PublicationsDiv>
         <h3>Publicações</h3>
         <p>{userIssues.length} publicações</p>
-      </div>
+      </PublicationsDiv>
 
       <SearchForm />
       {userIssues.map((userIssue) => {

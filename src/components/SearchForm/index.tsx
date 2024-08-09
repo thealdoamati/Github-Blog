@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import * as z from 'zod'
 import { GithubContext } from '../../context/GithubContext'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { SearchFormContainer, SearchInput } from './styles'
 
 const searchFormSchema = z.object({
   query: z.string(),
@@ -27,8 +28,8 @@ export function SearchForm() {
   }, [])
 
   return (
-    <form onSubmit={handleSubmit(searchTransactions)}>
-      <input type="text" placeholder="Buscar" {...register('query')} />
-    </form>
+    <SearchFormContainer onSubmit={handleSubmit(searchTransactions)}>
+      <SearchInput type="text" placeholder="Buscar" {...register('query')} />
+    </SearchFormContainer>
   )
 }
